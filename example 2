@@ -1,0 +1,49 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+const int n=6;
+void main ()
+{
+struct Monitor
+{ char name[20]; //марка монитора
+int garant; // срок гарантии
+float chena; // цена
+} mon[n]= {" Samsung 757 NF ", 36, 1100.1,
+" Sony CPD-C520K", 36, 11753.4,
+" Hansol H95S TFT ", 24, 4260.2,
+" Samsung 757 DFX ", 12, 1054.5,
+"LG T710H Flatron ", 36, 855.,
+"Samsung 192V TFT ", 36, 4252.2 };
+// инициализация массива mon[n] при описании
+int i, k; cout << "\t ******* Spisok monitorov ******* \n";
+//--------------------------- вывод информации о мониторах
+
+for (i = 0; i < n; i++)
+{
+cout<<(*(mon + i)).name; // cout<< (mоn + і) -> name;
+cout<<(*(mon + i)).garant; // cout<< (mоn + і) -> garant;
+cout<<(*(mon + i)).chena<< "\n";// cout<< (mоn + і)-> chena<< "\n";
+}
+//------------------------ сортировка no убыванию стоимости
+Monitor rab; // rab — для перестановки элем. массива
+for (k = 1; k < n; k++)
+for (i = 0; i < n-k; i++)
+if ((*(mon + i)).chena < (*(mon + i+1)).chena)
+//if ((mon + i) -> chena < (mon + i+1) -> chena)
+{ rab = *(mon + i);
+* (mon+i) = *(mon+i+1);
+*(mon + i+1) = rab; }
+cout << "\n\n\t ******* Sortirovka monitorov ******\n";
+/*-------- вывод информации о мониторах отсортированной по убыванию стоимости
+*/
+for (i = 0; i < n; i++)
+{
+cout<< " chena: ";
+cout<< (*(mon +i)).chena; // cout<< (топ + і) -> chena;
+cout<< " monitor ";
+cout<< (*(mon + i)).name; // cout<< (топ + і) -> name;
+cout<< " garantij: ";
+cout<< (*(mon + i)).garant <<"\n"; // cout<< (mоn + і) -> garant<< "\n";
+}
+getch();
+}
