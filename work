@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+    float time2;
+    const int n = 8;
+    struct TRAIN
+    {
+        char destination[50];
+        int number;
+        float time;
+    } info[n];
+    ////////////////////////////////////////////////////////////
+    for (int i = n; i > 0; i--) 
+    {
+        cout << "Enter your destination point: ";
+        cin >> info[i].destination;
+        cout << "Enter train number: ";
+        cin >> info[i].number;
+        cout << "Enter time: ";
+        cin >> info[i].time;
+        cout << endl;
+    }
+    //////////////////////////////////////////////////////////////////////////
+    for (int i = 0; i <= n; i++)
+    {
+        for (int j = n - 1; j > i ; j--)
+        {
+            if (strcmp(info[j].destination, info[j - 1].destination) < 0)
+            {
+                info[i] = info[j];
+                info[j] = info[j - 1];
+                info[j - 1] = info[i];
+            }
+        }    
+        cout << info[i].destination << " " << info[i].number << " " << info[i].time << endl;
+    }
+    cout << endl;
+    //////////////////////////////////////////////////////////////////////////
+    cout << "Enter your time: "; cin >> time2;
+    for (int i = 0; i < n; i++)
+    {
+        if (info[i].time >= time2)
+        {
+            cout << " Suitable train: " << info[i].number << endl;
+        }
+        if (info[i].time < time2)
+        {
+            cout << "Train is not suitable " <<endl;
+        }
+    }
+    return 0;
+}
